@@ -4,5 +4,20 @@
 {% endblock %}
 
 {% block body %}
-<h1>Templates</h1>
+<div class="content">
+    <h1>Tashan's Password Manager</h1>
+
+    <!-- Form for the new passwords -->
+    <form class="new-pw-form" action="/" method="POST">
+        <input type="text" name="username" id="username">
+        <input type="text" name="url" id="url">
+        <input type="password" name="password" id="password">
+
+        <input type="submit" value="Save password">
+    </form>
+
+    <!-- Table displaying stored passwords -->
+    <table class="password-table">
+    </table>
+</div>
 {% endblock %}
