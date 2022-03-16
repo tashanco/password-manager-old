@@ -19,7 +19,21 @@ class Password(db.Model):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        new_password = Password(username=username, password=password)
+        try:
+            db.session.add(new_password)
+            db.session.commit()
+            return redirect('/')
+        except:
+            return 'There was a problem adding your details'
+
+    else:
+        passwords = Password.query.order_by(Password.id).all()
+        return render_template('index.html', passwords=passwords)
 
 if __name__ == '__main__':
     app.run(debug=True)
