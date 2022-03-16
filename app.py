@@ -35,5 +35,33 @@ def index():
         passwords = Password.query.order_by(Password.id).all()
         return render_template('index.html', passwords=passwords)
 
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+    password = Password.query.get_or_404(id)
+    if request.method == 'POST':
+        password_to_update = Password.query.get_or_404(id)
+
+        password_to_update.username = request.form['username']
+        password_to_update.password = request.form['password']
+
+        try:
+            db.session.commit()
+            return redirect('/')
+        except:
+            return 'There was a problem updating your password'
+    else:
+        return render_template('update.html', password=password)
+
+@app.route('/delete/<int:id>', methods=['GET', 'POST'])
+def delete(id):
+    password_to_delete = Password.query.get_or_404(id)
+
+    try:
+        db.session.delete(password_to_delete)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return 'There was a problemm deleting your password'
+
 if __name__ == '__main__':
     app.run(debug=True)
