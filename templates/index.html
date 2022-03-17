@@ -18,6 +18,7 @@
 
     <br>
     <!-- Table displaying stored passwords -->
+    <h2>Stored Passwords</h2>
     <table class="password-table">
         <tr>
             <th>Username</th>
@@ -38,5 +39,12 @@
         </tr>
         {% endfor %}
     </table>
+    <br>
+    <!-- Password generator -->
+    <div>
+        <h2>Password Generator</h2>
+        <input type="text" value="" id="generated-password" name="generated-ppassword">
+        <button>Generate password</button>
+    </div>
 </div>
 {% endblock %}
