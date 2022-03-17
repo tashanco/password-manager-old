@@ -39,4 +39,4 @@ def generate_password():
 
 
 if __name__ == "__main__":
-        print("Your randomly generated password is:", generate_password())
+        print(generate_password())
